@@ -25,7 +25,7 @@ def gerar_palpites_chunk(args):
     
     # Usar uma função existente para gerar palpites
     # Podemos usar a função gospers_hack ou qualquer outra otimizada
-    palpites = gerar_palpites_mega_sena_gosper(numeros_disponiveis, quantidade)
+    palpites = gerar_palpites_dia_de_sorte_gosper(numeros_disponiveis, quantidade)
     
     return palpites
 

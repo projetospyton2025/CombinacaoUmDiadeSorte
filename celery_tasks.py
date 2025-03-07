@@ -18,7 +18,7 @@ redis_client = redis.Redis.from_url(
 )
 
 # Importar as funções de geração otimizadas
-from gospers_hack import gerar_palpites_mega_sena_gosper
+from gospers_hack import gerar_palpites_dia_de_sorte_gosper
 from paralelizacao import gerar_palpites_paralelo
 
 class PaleitosTask(Task):
@@ -150,7 +150,7 @@ def gerar_palpites_tarefa(self, combinacoes_formatadas, total_palpites):
                 logger.info(f'Bloco {i+1}/{blocos}: Gerados {len(palpites_bloco)} palpites em {time.time() - inicio_bloco:.2f} segundos')
         else:
             # Para quantidades menores, fazer tudo de uma vez
-            palpites = gerar_palpites_mega_sena_gosper(numeros_disponiveis, total_palpites)
+            palpites = gerar_palpites_dia_de_sorte_gosper(numeros_disponiveis, total_palpites)
             
             # Publicar progresso
             redis_client.publish(

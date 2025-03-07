@@ -21,7 +21,7 @@
 			<tr>
 			  <th>Nº de Dígitos</th>
 			  <th>Agrupamentos de 2 <small>(Concidere as dezenas gêmeas para o nº de dígitos)*</small></th>
-			  <th>Palpites (Mega Sena)</th>
+			  <th>Palpites (Dia de Sorte)</th>
 			</tr>
 		  </thead>
 		  <tbody>
@@ -223,13 +223,13 @@
 
 		<div id="palpitesControle" class="card mt-3" style="display: none;">
 		  <div class="card-header bg-success text-white">
-			Gerar Palpites para Mega Sena
+			Gerar Palpites para Dia de Sorte
 		  </div>
 		  <div class="card-body">
 			<div class="row mb-2">
 			  <div class="col-12">
 				<div class="alert alert-info p-2">
-				  <small>Com estes números é possível formar até <strong id="totalTeorico">0</strong> palpites diferentes para a Mega Sena.</small>
+				  <small>Com estes números é possível formar até <strong id="totalTeorico">0</strong> palpites diferentes para a Dia de Sorte.</small>
 				</div>
 			  </div>
 			</div>
@@ -244,31 +244,17 @@
 				</div>
 			  </div>
 			  <div class="col-md-5">
-				<button type="button" class="btn btn-success w-100" onclick="gerarPalpitesMegaSena()">
+				<button type="button" class="btn btn-success w-100" onclick="gerarPalpitesDiaDeSorte()">
 				  Gerar Palpites
 				</button>
 			  </div>
 			</div>
 		  </div>
 		</div>
-
-
-	<!-- O card de palpites com suporte a paginação -->
-	<!--
-	<div class="card mt-3" id="palpitesCard" style="display: none;">
-		<div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
-			<div>Palpites para Mega Sena (Total: <span id="totalPalpites">0</span>)</div>
-			<div id="paginaInfo" class="badge bg-light text-dark">Página 0 de 0</div>
-		</div>
-		<div class="card-body resultado-box">
-			<div id="palpites"></div>
-		</div>
-	</div>
-	-->
 	
 	<div class="card mt-3" id="palpitesCard" style="display: none;">
 		<div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
-			<div>Palpites para Mega Sena (Total: <span id="totalPalpites">0</span>)</div>
+			<div>Palpites para Dia de Sorte (Total: <span id="totalPalpites">0</span>)</div>
 			<div>
 				<span id="paginaInfo" class="badge bg-light text-dark me-2">Carregando...</span>
 				<button id="btnRecarregarPalpites" class="btn btn-sm btn-light" onclick="reiniciarPalpites()" title="Reiniciar carregamento"></button>
@@ -279,18 +265,7 @@
 			</div>
 	</div>
 	
-	<!--
-	<div class="card mt-3" id="palpitesCard" style="display: none;">
-		<div class="card-header bg-success text-white">
-			Palpites para Mega Sena (Total: <span id="totalPalpites">0</span>)
-		</div>
-		<div class="card-body resultado-box">
-			<div id="palpites"></div>
-		</div>
-	</div>
-	-->
-	
-	
+
 	
 </div>
 	
@@ -309,7 +284,7 @@
               <tr>
                 <th>Nº de Dígitos</th>
                 <th>Agrupamentos de 2</th>
-                <th>Palpites (Mega Sena)</th>
+                <th>Palpites (Dia de Sorte)</th>
               </tr>
             </thead>
             <tbody id="tabelaCompletaBody">

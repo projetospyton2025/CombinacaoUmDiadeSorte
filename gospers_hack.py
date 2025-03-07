@@ -25,7 +25,7 @@ def gospers_hack(k, n):
         mask = (((r ^ mask) >> 2) // c) | r
 
 # Função para gerar palpites usando Gosper's Hack
-def gerar_palpites_mega_sena_gosper(numeros_disponiveis, total_palpites):
+def gerar_palpites_dia_de_sorte_gosper(numeros_disponiveis, total_palpites):
     """
     Gera palpites para a Mega Sena usando o algoritmo de Gosper's Hack.
     
@@ -68,7 +68,7 @@ def gerar_palpites_mega_sena_gosper(numeros_disponiveis, total_palpites):
             numeros_permutados = [numeros_disponiveis[i] for i in indices]
             
             # Gerar combinações usando Gosper's Hack
-            for combo_indices in gospers_hack(6, min(n, 50)):  # Limitamos a 50 elementos para eficiência
+            for combo_indices in gospers_hack(7, min(n, 50)):  # Limitamos a 50 elementos para eficiência
                 palpite = tuple(sorted(numeros_permutados[i] for i in combo_indices))
                 
                 if palpite not in palpites_set:

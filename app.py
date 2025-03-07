@@ -111,12 +111,12 @@ def calcular():
         combinacoes = gerar_combinacoes(numeros, tamanho)
         combinacoes_formatadas = [formatar_numero(c) for c in combinacoes]
         
-        # Filtrar combinações que resultam em números maiores que 60 (limite da Mega Sena)
+        # Filtrar combinações que resultam em números maiores que 31 (limite da Mega Sena)
         combinacoes_filtradas = []
         for comb in combinacoes_formatadas:
             try:
                 num = int(comb)
-                if 1 <= num <= 60:  # Intervalo válido para Mega Sena
+                if 1 <= num <= 31:  # Intervalo válido para Dia de Sorte
                     combinacoes_filtradas.append(comb)
             except ValueError:
                 pass  # Ignorar valores que não podem ser convertidos para int
@@ -144,53 +144,40 @@ def calcular():
 
 
 
-
-# Função otimizada de gerar palpites para a Mega Sena
-def gerar_palpites_mega_sena(combinacoes_formatadas, total_palpites=10):
+# Função otimizada de gerar palpites para o Dia de Sorte (7 números)
+def gerar_palpites_dia_de_sorte(combinacoes_formatadas, total_palpites=10):
     """
-    Gera palpites para a Mega Sena a partir das combinações de dois dígitos.
-    Cada palpite contém 6 números únicos entre 1 e 60.
-    
-    Args:
-        combinacoes_formatadas: Lista de combinações de dois dígitos já formatadas
-        total_palpites: Número de palpites a serem gerados
-        
-    Returns:
-        Uma lista de palpites, onde cada palpite é uma lista de 6 números únicos
+    Gera palpites para o Dia de Sorte a partir das combinações de dois dígitos.
+    Cada palpite contém 7 números únicos entre 1 e 31.
     """
-    numeros_unicos = set()
-    
     # Extrair números das combinações de dois dígitos
+    numeros_unicos = set()
     for combinacao in combinacoes_formatadas:
         i = 0
         while i < len(combinacao):
-            # Tentar extrair um número de 2 dígitos
             if i + 1 < len(combinacao):
                 try:
                     num_str = combinacao[i:i+2]
                     numero = int(num_str)
-                    if 1 <= numero <= 60:  # Garantir que está no intervalo da Mega Sena
+                    if 1 <= numero <= 31:  # Garantir que está no intervalo do Dia de Sorte
                         numeros_unicos.add(numero)
                 except ValueError:
                     pass
-            i += 2  # Avançar para o próximo par de dígitos
+            i += 2
     
-    # Converter o conjunto para lista para facilitar a manipulação
+    # Converter para lista
     numeros_disponiveis = list(numeros_unicos)
     
-    # Se não houver números suficientes, complementar com números aleatórios
-    if len(numeros_disponiveis) < 6:
-        numeros_faltantes = set(range(1, 61)) - set(numeros_disponiveis)
-        numeros_complementares = random.sample(list(numeros_faltantes), 6 - len(numeros_disponiveis))
+    # Garantir que temos pelo menos 7 números
+    if len(numeros_disponiveis) < 7:
+        # Se não houver números suficientes, complementar com números aleatórios
+        numeros_faltantes = set(range(1, 32)) - set(numeros_disponiveis)  # 1 a 31
+        numeros_complementares = random.sample(list(numeros_faltantes), 7 - len(numeros_disponiveis))
         numeros_disponiveis.extend(numeros_complementares)
-    
-    # Garantir que temos pelo menos 6 números
-    if len(numeros_disponiveis) < 6:
-        raise ValueError("Não foi possível extrair números suficientes das combinações")
     
     # Para geração de grandes quantidades, usamos uma abordagem mais eficiente
     if total_palpites > 100:
-        return gerar_palpites_grande_quantidade(numeros_disponiveis, total_palpites)
+        return gerar_palpites_grande_quantidade_dia_de_sorte(numeros_disponiveis, total_palpites)
     
     # Para quantidades menores, usamos a abordagem normal
     palpites = []
@@ -200,24 +187,20 @@ def gerar_palpites_mega_sena(combinacoes_formatadas, total_palpites=10):
     while len(palpites) < total_palpites and tentativas < tentativas_maximas:
         tentativas += 1
         
-        # Se tivermos muitos números disponíveis, podemos gerar mais variações
         if len(numeros_disponiveis) > 15:
-            # Escolher 6 números aleatórios do conjunto disponível
-            palpite = sorted(random.sample(numeros_disponiveis, 6))
+            # Escolher 7 números aleatórios do conjunto disponível
+            palpite = sorted(random.sample(numeros_disponiveis, 7))  # Agora 7 números
         else:
-            # Para conjuntos menores, podemos precisar de uma abordagem mais criativa
-            # Garantir que pelo menos 3 números sejam dos disponíveis
-            n_fixos = min(3, len(numeros_disponiveis))
+            # Lógica para conjuntos menores, garantindo 7 números por palpite
+            n_fixos = min(4, len(numeros_disponiveis))
             numeros_fixos = random.sample(numeros_disponiveis, n_fixos)
             
-            # Complementar com números aleatórios entre 1-60 que não estejam nos fixos
             numeros_adicionais = []
-            while len(numeros_fixos) + len(numeros_adicionais) < 6:
-                novo_num = random.randint(1, 60)
+            while len(numeros_fixos) + len(numeros_adicionais) < 7:  # Completar até 7
+                novo_num = random.randint(1, 31)  # Números de 1 a 31
                 if novo_num not in numeros_fixos and novo_num not in numeros_adicionais:
                     numeros_adicionais.append(novo_num)
             
-            # Juntar e ordenar
             palpite = sorted(numeros_fixos + numeros_adicionais)
         
         # Verificar se esse palpite já existe
@@ -227,12 +210,13 @@ def gerar_palpites_mega_sena(combinacoes_formatadas, total_palpites=10):
         if palpite_str not in palpites_existentes:
             palpites.append(palpite)
     
-    # Se não conseguimos gerar palpites suficientes, retornar o que temosconst socketioU
+    # Se não conseguimos gerar palpites suficientes, retornar o que temos
     return palpites
+            
 
-def gerar_palpites_grande_quantidade(numeros_disponiveis, total_palpites):
+def gerar_palpites_grande_quantidade_dia_de_sorte(numeros_disponiveis, total_palpites):
     """
-    Método otimizado para gerar grandes quantidades de palpites.
+    Método otimizado para gerar grandes quantidades de palpites para o Dia de Sorte.
     Usa um conjunto para verificação rápida de duplicatas.
     """
     palpites_set = set()
@@ -247,15 +231,15 @@ def gerar_palpites_grande_quantidade(numeros_disponiveis, total_palpites):
         tentativas += 1
         
         if alta_variabilidade:
-            if len(numeros_disponiveis) >= 6:
-                palpite = tuple(sorted(random.sample(numeros_disponiveis, 6)))
+            if len(numeros_disponiveis) >= 7:
+                palpite = tuple(sorted(random.sample(numeros_disponiveis, 7)))
             else:
                 numeros_base = list(numeros_disponiveis)
-                complementos_necessarios = 6 - len(numeros_base)
+                complementos_necessarios = 7 - len(numeros_base)
                 complementos = []
                 
                 while len(complementos) < complementos_necessarios:
-                    num = random.randint(1, 60)
+                    num = random.randint(1, 31)
                     if num not in numeros_base and num not in complementos:
                         complementos.append(num)
                 
@@ -269,8 +253,8 @@ def gerar_palpites_grande_quantidade(numeros_disponiveis, total_palpites):
                 numeros_base = []
                 
             complementos = []
-            while len(numeros_base) + len(complementos) < 6:
-                num = random.randint(1, 60)
+            while len(numeros_base) + len(complementos) < 7:
+                num = random.randint(1, 31)
                 if num not in numeros_base and num not in complementos:
                     complementos.append(num)
             
@@ -297,7 +281,7 @@ def gerar_palpites():
         combinacoes_formatadas = dados.get("combinacoes", [])
         total_palpites = int(dados.get("quantidade", 10))
         
-        app.logger.info(f'Gerando {total_palpites} palpites para a Mega Sena.')
+        app.logger.info(f'Gerando {total_palpites} palpites para a Dia de Sorte.')
         
         # Validação
         if not combinacoes_formatadas or total_palpites <= 0:
@@ -315,7 +299,7 @@ def gerar_palpites():
         
         # Usar um timer para limitar o tempo de execução
         start_time = time.time()
-        palpites = gerar_palpites_mega_sena(combinacoes_formatadas, total_palpites)
+        palpites = gerar_palpites_dia_de_sorte(combinacoes_formatadas, total_palpites)
         execution_time = time.time() - start_time
         
         app.logger.info(f'Gerados {len(palpites)} palpites em {execution_time:.2f} segundos')
