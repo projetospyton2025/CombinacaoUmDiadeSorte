@@ -1,0 +1,148 @@
+
+
+baseado na informação que eu vou postar aqui.. crie o códio em python.
+Traga as informações em portugues...
+crie um script chamado combinacaoI.ps1 para
+criar a estruturas,pastas,arquivos,requirements.txt
+adicione automaticamente os conteudos nos arquivos, crie um ambiente virtual, ative este ambiente e instale o requeriments. tudo automaticamente
+lembrando que o script será rodado a partir do drive c:\ porém é pra criar tudo em:
+J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I
+
+eu quero colocar/selecionar a quantidade de digitos/numeros e o sistema calcula para mim quanto da.. sempre dezenas agrupadas em dois...
+eu quero saber isso para usar nas modalidades de loterias.. da caixa.. 
+
+Entendi! Você quer formar números de dois dígitos a partir dos dígitos do número 120.
+
+Os dígitos disponíveis em 120 são: 1, 2 e 0.
+
+Agora, formando todas as combinações possíveis de dois dígitos, temos:
+
+10
+12
+20
+01
+02
+21
+Ou seja, há 6 combinações possíveis tomando dois dígitos de "120".
+
+Se precisar de mais esclarecimentos, me avise!
+
+
+
+
+
+
+
+Resumindo se três dígitos para combinar co. Dois dígitos dara sempre 6 combinacoes
+ChatGPT said:
+Sim, exatamente! Sempre que você tiver 3 dígitos distintos e quiser formar números de dois dígitos, o número total de combinações será 6.
+
+Isso acontece porque usamos a fórmula da combinação:
+
+𝐶
+(
+𝑛
+,
+𝑘
+)
+=
+𝑛
+!
+𝑘
+!
+(
+𝑛
+−
+𝑘
+)
+!
+C(n,k)= 
+k!(n−k)!
+n!
+​
+ 
+Para n = 3 (quantidade de dígitos) e k = 2 (quantidade escolhida):
+
+𝐶
+(
+3
+,
+2
+)
+=
+3
+!
+2
+!
+(
+3
+−
+2
+)
+!
+=
+3
+×
+2
+2
+×
+1
+=
+3
+C(3,2)= 
+2!(3−2)!
+3!
+​
+ = 
+2×1
+3×2
+​
+ =3
+Mas como a ordem importa (exemplo: 12 e 21 são diferentes), usamos permutação simples:
+
+𝑃
+(
+3
+,
+2
+)
+=
+3
+!
+(
+3
+−
+2
+)
+!
+=
+3
+!
+1
+!
+=
+3
+×
+2
+×
+1
+1
+=
+6
+P(3,2)= 
+(3−2)!
+3!
+​
+ = 
+1!
+3!
+​
+ = 
+1
+3×2×1
+​
+ =6
+Ou seja, com 3 dígitos diferentes, você sempre terá 6 combinações de dois dígitos.
+
+Se precisar considerar repetições ou outro critério, posso ajustar o cálculo!
+

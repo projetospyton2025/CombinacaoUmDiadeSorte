@@ -1,0 +1,77 @@
+2025-03-01 10:48:06,406 INFO: Iniciando aplicação de combinações [in j:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:60]
+2025-03-01 10:48:13,599 INFO: Iniciando aplicação de combinações [in j:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:60]
+2025-03-01 11:24:29,263 INFO: Iniciando aplicação de combinações [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:60]
+2025-03-01 11:24:33,202 INFO: Iniciando aplicação de combinações [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:60]
+2025-03-01 11:24:59,217 INFO: Calculando combinações para números: 0,1,2,3,4,5,6,7,8,9, tamanho: 2 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:94]
+2025-03-01 11:24:59,224 INFO: Geradas 99 combinações, 60 após filtrar números > 60 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:130]
+2025-03-01 11:25:53,910 INFO: Gerando 500 palpites para a Mega Sena. [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:342]
+2025-03-01 11:25:53,976 INFO: Gerados 500 palpites em 0.06 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:359]
+2025-03-01 11:26:30,664 INFO: Iniciando aplicação de combinações [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:60]
+2025-03-01 11:28:10,228 INFO: Calculando combinações para números: 0,1,2,3,4,5,6,7,8,9, tamanho: 2 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:94]
+2025-03-01 11:28:10,231 INFO: Geradas 99 combinações, 60 após filtrar números > 60 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:130]
+2025-03-01 11:28:23,752 INFO: Gerando palpites para a Mega Sena. Total: 112, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 11:28:23,796 INFO: Gerados palpites da página 1 em 0.03 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:339]
+2025-03-01 11:36:30,080 INFO: Calculando combinações para números:  0,1,2,3,4,5,6,7,8,9, tamanho: 2 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:94]
+2025-03-01 11:36:30,089 INFO: Geradas 99 combinações, 60 após filtrar números > 60 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:130]
+2025-03-01 11:36:39,180 INFO: Gerando palpites para a Mega Sena. Total: 206856, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 11:37:07,121 INFO: Gerados palpites da página 1 em 27.93 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:339]
+2025-03-01 11:42:46,052 INFO: Iniciando aplicação de combinações [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:60]
+2025-03-01 11:42:49,484 INFO: Iniciando aplicação de combinações [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:60]
+2025-03-01 11:43:40,544 INFO: Calculando combinações para números: 0,1,2,3,4,5,6,7,8,9, tamanho: 2 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:94]
+2025-03-01 11:43:40,551 INFO: Geradas 99 combinações, 60 após filtrar números > 60 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:130]
+2025-03-01 11:44:30,590 INFO: Gerando palpites para a Mega Sena. Total: 867485, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 11:46:24,770 ERROR: Erro inesperado ao gerar palpites: command not allowed when used memory > 'maxmemory'. [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:351]
+2025-03-01 11:46:24,902 ERROR: Traceback (most recent call last):
+  File "J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py", line 326, in gerar_palpites
+    redis_client.setex(cache_key, 3600, json.dumps(todos_palpites))
+  File "J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\venv\Lib\site-packages\redis\commands\core.py", line 2360, in setex
+    return self.execute_command("SETEX", name, time, value)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\venv\Lib\site-packages\redis\client.py", line 559, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\venv\Lib\site-packages\redis\client.py", line 567, in _execute_command
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\venv\Lib\site-packages\redis\retry.py", line 62, in call_with_retry
+    return do()
+           ^^^^
+  File "J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\venv\Lib\site-packages\redis\client.py", line 568, in <lambda>
+    lambda: self._send_command_parse_response(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\venv\Lib\site-packages\redis\client.py", line 542, in _send_command_parse_response
+    return self.parse_response(conn, command_name, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\venv\Lib\site-packages\redis\client.py", line 584, in parse_response
+    response = connection.read_response()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\venv\Lib\site-packages\redis\connection.py", line 616, in read_response
+    raise response
+redis.exceptions.OutOfMemoryError: command not allowed when used memory > 'maxmemory'.
+ [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:353]
+2025-03-01 11:46:40,435 INFO: Gerando palpites para a Mega Sena. Total: 289547, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 11:47:18,833 INFO: Gerados palpites da página 1 em 38.40 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:339]
+2025-03-01 12:07:52,379 INFO: Iniciando aplicação de combinações [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:60]
+2025-03-01 12:07:55,637 INFO: Iniciando aplicação de combinações [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:60]
+2025-03-01 12:10:45,888 INFO: Calculando combinações para números: 0,1,2,3,4,5,6,7,8,9, tamanho: 2 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:94]
+2025-03-01 12:10:45,899 INFO: Geradas 99 combinações, 60 após filtrar números > 60 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:130]
+2025-03-01 12:10:49,781 INFO: Gerando palpites para a Mega Sena. Total: 10, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 12:10:49,783 INFO: Gerados 10 palpites em 0.00 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:333]
+2025-03-01 12:11:01,555 INFO: Gerando palpites para a Mega Sena. Total: 10, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 12:11:01,560 INFO: Gerados 10 palpites em 0.00 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:333]
+2025-03-01 12:11:05,668 INFO: Gerando palpites para a Mega Sena. Total: 10, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 12:11:05,672 INFO: Gerados 10 palpites em 0.00 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:333]
+2025-03-01 12:11:06,614 INFO: Gerando palpites para a Mega Sena. Total: 10, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 12:11:06,618 INFO: Gerados 10 palpites em 0.00 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:333]
+2025-03-01 12:11:07,517 INFO: Gerando palpites para a Mega Sena. Total: 10, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 12:11:07,521 INFO: Gerados 10 palpites em 0.00 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:333]
+2025-03-01 12:11:14,850 INFO: Gerando palpites para a Mega Sena. Total: 1022192, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 12:11:14,852 WARNING: Solicitação de grande volume: 1022192 palpites [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:314]
+2025-03-01 12:13:20,652 INFO: Gerados 1022192 palpites em 125.79 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:333]
+2025-03-01 12:17:44,104 INFO: Gerando palpites para a Mega Sena. Total: 1022192, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 12:17:44,107 WARNING: Solicitação de grande volume: 1022192 palpites [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:314]
+2025-03-01 12:19:39,825 INFO: Gerando palpites para a Mega Sena. Total: 1022192, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]
+2025-03-01 12:19:39,829 WARNING: Solicitação de grande volume: 1022192 palpites [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:314]
+2025-03-01 12:19:51,924 INFO: Gerados 1022192 palpites em 127.81 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:333]
+2025-03-01 12:21:47,308 INFO: Gerados 1022192 palpites em 127.47 segundos [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:333]
+2025-03-01 12:21:55,103 INFO: Gerando palpites para a Mega Sena. Total: 1022192, Página: 1, Itens: 100 [in J:\Meu Drive\ProjetosPython\Loterias\Combinacoes\Combinacao-I\app.py:305]

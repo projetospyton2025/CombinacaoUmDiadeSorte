@@ -1,0 +1,224 @@
+﻿/* Estilos para paginação e carregamento infinito */
+.resultado-box {
+    max-height: 500px; /* Aumente a altura máxima */
+    overflow-y: auto;
+    padding: 15px;
+    font-family: monospace;
+    font-size: 16px;
+    line-height: 2;
+    position: relative; /* Para posicionar o botão de carregar mais */
+}
+/* Botão de carregar mais */
+#carregarMaisBtn {
+    padding: 15px;
+    margin-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+/* Indicador de paginação */
+#paginaInfo {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+}
+
+/* Estilo para tabela Excel */
+.resultado-box table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.resultado-box table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 8px;
+  width: 16.66%; /* Para 6 colunas */
+}
+
+.celula-excel {
+  user-select: all; /* Facilita a seleção do conteúdo */
+  cursor: pointer;
+}
+
+.celula-excel:hover {
+  background-color: #e9ecef;
+}
+
+/* Estilo para mensagens de erro */
+.error-message {
+  color: #dc3545;
+  margin-top: 5px;
+  display: none;
+}
+
+.numero {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 2px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 5px;
+  display: none;
+}
+
+.btn-primary {
+  display: inline-block;
+  text-align: center;
+}
+
+footer {
+  color: #161515;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: auto;
+  margin-top: 10px; /* Espaço acima do rodapé */
+}
+
+
+/* Estilos para o modal da tabela completa */
+.modal-tabela {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-conteudo {
+  background-color: #fefefe;
+  margin: 2% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 5px;
+}
+
+.fechar-modal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.fechar-modal:hover,
+.fechar-modal:focus {
+  color: black;
+  text-decoration: none;
+}
+
+.modal-header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 10;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+thead {
+  background-color: #007acc;
+  color: white;
+}
+
+th, td {
+  border: 1px solid #005f99;
+  padding: 10px;
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #cce5ff;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #e6f2ff;
+}
+
+tbody tr:hover {
+  background-color: #99ccff;
+}
+/* Estilos para a tabela Excel */
+.tabela-excel {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: fixed; /* Garante que todas as células tenham a mesma largura */
+}
+
+.tabela-excel td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 8px;
+  width: 16.66%; /* Exatamente 6 colunas de tamanho igual */
+  height: 40px;
+  vertical-align: middle;
+  font-weight: 500;
+  font-family: 'Courier New', monospace; /* Para melhor alinhamento */
+}
+
+/* Estilo especial para facilitar a seleção do conteúdo */
+.celula-excel {
+  user-select: all; /* Facilita a seleção do conteúdo */
+  cursor: pointer;
+  position: relative;
+}
+
+/* Feedback visual ao passar o mouse */
+.celula-excel:hover {
+  background-color: #e9ecef;
+}
+
+/* Estilo para quando a célula é clicada (selecionada) */
+.celula-excel:active {
+  background-color: #c0d8e8;
+}
+
+/* Estilos para as mensagens de erro */
+.error-message {
+  color: #dc3545;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  display: none;
+  padding: 5px;
+  border-radius: 3px;
+  background-color: rgba(220, 53, 69, 0.1);
+}
+#tamanho {
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .card-body {
+    text-align: center;
+  }
+
+  button {
+    display: inline-block;
+  }
+
+  footer {
+    color: #f00303;
+    font-style: italic;
+  }
+}
