@@ -78,7 +78,7 @@ function extrairNumerosUnicos(combinacoes) {
         try {
           const numStr = combinacao.substring(i, i+2);
           const numero = parseInt(numStr);
-          if (numero >= 1 && numero <= 31) {
+          if (numero >= 1 && numero <= 60) {
             numerosUnicos.add(numero);
           }
         } catch (e) {}
@@ -151,7 +151,7 @@ async function calcularCombinacoes(event) {
                 const numerosUnicosArray = extrairNumerosUnicos(data.combinacoes);
                 console.log("Números únicos extraídos:", numerosUnicosArray);
                 
-                const totalTeorico = calcularTotalCombinacoesPossiveis(numerosUnicosArray.length, 7);
+                const totalTeorico = calcularTotalCombinacoesPossiveis(numerosUnicosArray.length, 6);
                 console.log("Total teórico calculado:", totalTeorico);
                 
                 // Mostrar o total teórico na interface formatado no padrão brasileiro
@@ -467,7 +467,7 @@ function abrirModal() {
     // Calcular agrupamentos de 2
     const agrupamentos = digitos * (digitos - 1);
     
-    // Calcular palpites para Dia de Sorte
+    // Calcular palpites para Mega Sena
     let palpites;
     if (digitos < 6) {
       // Valores especiais para menos de 6 dígitos
@@ -621,19 +621,19 @@ function validarEntradaDigitos() {
     });
 }
 
-// Função para criar tabela formatada para Dia de Sorte (7 colunas)
+// Função para criar tabela formatada para Excel
 function criarTabelaCombinacoes(combinacoes) {
-    // Filtrar para remover completamente números acima de 31
+    // Filtrar para remover completamente números acima de 60
     const combinacoesFiltradas = combinacoes.filter(comb => {
         const num = parseInt(comb);
-        return num > 0 && num <= 31; // Garantir que esteja no intervalo 1-31
+        return num > 0 && num <= 60; // Garantir que esteja no intervalo 1-60
     });
     
     // Ordenar numericamente (não alfabeticamente)
     combinacoesFiltradas.sort((a, b) => parseInt(a) - parseInt(b));
     
-    // Configurar tabela com exatos 7 números por linha (padrão Dia de Sorte)
-    const numeroColunas = 7; // 7 colunas para Dia de Sorte
+    // Configurar tabela com exatos 6 números por linha (padrão Mega Sena)
+    const numeroColunas = 6;
     const numeroLinhas = Math.ceil(combinacoesFiltradas.length / numeroColunas);
     
     const tabela = document.createElement('table');
@@ -685,41 +685,10 @@ function criarTabelaCombinacoes(combinacoes) {
     return divContainer;
 }
 
-// Modificar a função para gerar palpites Dia de Sorte
-async function gerarPalpitesDiaDeSorte() {
-    // Ajustar a lógica para 7 números ao invés de 6
-    // ...
-    
-    // Criar a tabela com cabeçalho de 7 colunas
-    for (let i = 1; i <= 7; i++) {
-        const th = document.createElement("th");
-        th.textContent = `Nº ${i}`;
-        headerRow.appendChild(th);
-    }
-    // ...
-}
-
-// Ajustar a função auxiliar de cálculo de combinações possíveis para considerar 7 números
-function calcularTotalCombinacoesPossiveis(n, r = 7) {
-    // Manter a lógica, mas agora considerar r=7
-    // ...
-}
-
-// Ajustar a função extrairNumerosUnicos para filtrar números até 31
-function extrairNumerosUnicos(combinacoes) {
-    // ...
-    if (numero >= 1 && numero <= 31) { // Agora até 31
-        numerosUnicos.add(numero);
-    }
-    // ...
-}
-
-
-
 // Função melhorada para copiar para a área de transferência
 function copiarTabelaParaClipboard(combinacoes) {
     // Formatar para colar no Excel (tabs entre colunas, nova linha entre linhas)
-    const numeroColunas = 7;
+    const numeroColunas = 6;
     let textoFormatado = '';
     
     for (let i = 0; i < combinacoes.length; i++) {
@@ -827,7 +796,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // Função para gerar palpites (modificada para suportar assíncrono e paginação)
-async function gerarPalpitesDiaDeSorte() {
+async function gerarPalpitesMegaSena() {
     // Verificar se temos combinações geradas
     if (!window.combinacoesGeradas || window.combinacoesGeradas.length === 0) {
         alert("Por favor, gere as combinações primeiro.");
@@ -909,7 +878,7 @@ async function gerarPalpitesDiaDeSorte() {
         const headerRow = document.createElement("tr");
         
         // Cabeçalho numerado de 1 a 6
-        for (let i = 1; i <= 7; i++) {
+        for (let i = 1; i <= 6; i++) {
             const th = document.createElement("th");
             th.textContent = `Nº ${i}`;
             headerRow.appendChild(th);
@@ -936,18 +905,6 @@ async function gerarPalpitesDiaDeSorte() {
         
         table.appendChild(tbody);
         palpitesDiv.appendChild(table);
-		
-		// Adicionar botão de cópia APÓS exibir os palpites
-			const botaoCopiar = document.createElement('button');
-			botaoCopiar.className = 'btn btn-sm btn-outline-primary mt-2';
-			botaoCopiar.innerHTML = 'Copiar palpites para área de transferência';
-			botaoCopiar.onclick = function() {
-				copiarPalpitesParaClipboard(data.palpites);
-			};
-
-			palpitesDiv.appendChild(botaoCopiar);
-		
-		
         
         // Exibe o card de palpites
         document.getElementById("palpitesCard").style.display = "block";
@@ -1083,7 +1040,7 @@ function copiarTabelaAlternativo(combinacoes) {
     const textArea = document.createElement('textarea');
     
     // Formatar dados
-    const numeroColunas = 7;
+    const numeroColunas = 6;
     let textoFormatado = '';
     
     for (let i = 0; i < combinacoes.length; i++) {
@@ -1113,8 +1070,7 @@ function copiarTabelaAlternativo(combinacoes) {
     // Feedback
     alert('Combinações copiadas para a área de transferência!');
 }
-
-// Função para copiar palpites do Dia de Sorte para a área de transferência
+// Função para copiar palpites da Mega Sena para a área de transferência
 function copiarPalpitesParaClipboard(palpites) {
     // Formatar para colar no Excel (tabs entre colunas, nova linha entre linhas)
     let textoFormatado = '';
@@ -1122,17 +1078,20 @@ function copiarPalpitesParaClipboard(palpites) {
     for (let i = 0; i < palpites.length; i++) {
         const palpite = palpites[i];
         
-        // Para cada número do palpite (7 números para o Dia de Sorte)
+        // Para cada número no palpite
         for (let j = 0; j < palpite.length; j++) {
             const num = palpite[j];
+            // Adicionar o número
             textoFormatado += num;
             
+            // Adicionar tab ou nova linha
             if (j < palpite.length - 1) {
                 textoFormatado += '\t'; // Tab entre números do mesmo palpite
             }
         }
         
-        textoFormatado += '\n'; // Nova linha após cada palpite completo
+        // Nova linha após cada palpite completo
+        textoFormatado += '\n';
     }
     
     // Método 1: Tenta usar a API Clipboard moderna
@@ -1194,7 +1153,6 @@ function copiarPalpitesParaClipboard(palpites) {
         document.getElementById('palpites').appendChild(divSelecao);
     }
 }
-
 
 // Função para mostrar mensagem de sucesso (agora aceita um parâmetro para identificar o container)
 function mostrarMensagemSucesso(container = 'combinacoes') {
