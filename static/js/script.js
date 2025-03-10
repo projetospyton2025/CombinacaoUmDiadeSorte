@@ -66,34 +66,30 @@ function calcularTotalCombinacoesPossiveis(n, r) {
   }
 }
 
-// Função auxiliar para extrair números da lista de combinações formatadas
+// Alteração na função extrairNumerosUnicos para limitar aos números do Dia de Sorte (1 a 31)
 function extrairNumerosUnicos(combinacoes) {
-  const numerosUnicos = new Set();
-  
-  for (const combinacao of combinacoes) {
-    // Tentar extrair números de 2 dígitos da combinação
-    let i = 0;
-    while (i < combinacao.length) {
-      if (i + 1 < combinacao.length) {
-        try {
-          const numStr = combinacao.substring(i, i+2);
-          const numero = parseInt(numStr);
-          if (numero >= 1 && numero <= 60) {
-            numerosUnicos.add(numero);
-          }
-        } catch (e) {}
+    const numerosUnicos = new Set();
+    
+    for (const combinacao of combinacoes) {
+      // Tentar extrair números de 2 dígitos da combinação
+      let i = 0;
+      while (i < combinacao.length) {
+        if (i + 1 < combinacao.length) {
+          try {
+            const numStr = combinacao.substring(i, i+2);
+            const numero = parseInt(numStr);
+            if (numero >= 1 && numero <= 31) { // Limitado a 31 para o Dia de Sorte
+              numerosUnicos.add(numero);
+            }
+          } catch (e) {}
+        }
+        i += 2;
       }
-      i += 2;
     }
+    
+    return [...numerosUnicos];
   }
-  
-  return [...numerosUnicos];
-}
 
-
-
-
-// Função para calcular combinações
 // Função para calcular combinações
 async function calcularCombinacoes(event) {
     event.preventDefault();
@@ -455,46 +451,19 @@ function formatarNumero(numero) {
   return numero.toLocaleString('pt-BR');
 }
 
+//Modificações necessárias no script.js
+
+// Função para remover o modal
+// Como estamos removendo completamente o modal, estas funções não são mais necessárias
+// porém devem continuar existindo para evitar erros no caso de serem chamadas em algum lugar
 function abrirModal() {
-  const modal = document.getElementById('modalTabelaCompleta');
-  const tbody = document.getElementById('tabelaCompletaBody');
-  
-  // Limpar conteúdo anterior
-  tbody.innerHTML = '';
-  
-  // Preencher com dados de 2 a 60
-  for (let digitos = 2; digitos <= 60; digitos++) {
-    // Calcular agrupamentos de 2
-    const agrupamentos = digitos * (digitos - 1);
-    
-    // Calcular palpites para Mega Sena
-    let palpites;
-    if (digitos < 6) {
-      // Valores especiais para menos de 6 dígitos
-      palpites = digitos === 2 ? "-" : digitos === 3 ? "1" : digitos === 4 ? "2" : "3";
-    } else {
-      // Para 6 ou mais dígitos, usamos C(n,6)
-      const valor = calcularTotalCombinacoesPossiveis(digitos, 6);
-      palpites = valor > 999 ? formatarNumero(valor) : valor;
-    }
-    
-    // Criar a linha da tabela
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${digitos}</td>
-      <td>${formatarNumero(agrupamentos)}</td>
-      <td>${palpites}</td>
-    `;
-    
-    tbody.appendChild(tr);
-  }
-  
-  // Exibir o modal
-  modal.style.display = 'block';
+  console.log("Modal removido na versão Dia de Sorte");
+  // Função vazia para evitar erros caso seja chamada
 }
 
 function fecharModal() {
-  document.getElementById('modalTabelaCompleta').style.display = 'none';
+  console.log("Modal removido na versão Dia de Sorte");
+  // Função vazia para evitar erros caso seja chamada
 }
 
 // Fechar o modal quando o usuário clicar fora dele
@@ -621,19 +590,19 @@ function validarEntradaDigitos() {
     });
 }
 
-// Função para criar tabela formatada para Excel
+// Alteração na função criarTabelaCombinacoes para filtrar apenas números do Dia de Sorte
 function criarTabelaCombinacoes(combinacoes) {
-    // Filtrar para remover completamente números acima de 60
+    // Filtrar para remover completamente números acima de 31
     const combinacoesFiltradas = combinacoes.filter(comb => {
         const num = parseInt(comb);
-        return num > 0 && num <= 60; // Garantir que esteja no intervalo 1-60
+        return num > 0 && num <= 31; // Garantir que esteja no intervalo 1-31
     });
     
     // Ordenar numericamente (não alfabeticamente)
     combinacoesFiltradas.sort((a, b) => parseInt(a) - parseInt(b));
     
-    // Configurar tabela com exatos 6 números por linha (padrão Mega Sena)
-    const numeroColunas = 6;
+    // Configurar tabela com exatos 7 números por linha (padrão Dia de Sorte)
+    const numeroColunas = 7; // 7 colunas para Dia de Sorte
     const numeroLinhas = Math.ceil(combinacoesFiltradas.length / numeroColunas);
     
     const tabela = document.createElement('table');
@@ -685,10 +654,10 @@ function criarTabelaCombinacoes(combinacoes) {
     return divContainer;
 }
 
-// Função melhorada para copiar para a área de transferência
+// Função para copiar para a área de transferência - atualizada para 7 colunas
 function copiarTabelaParaClipboard(combinacoes) {
     // Formatar para colar no Excel (tabs entre colunas, nova linha entre linhas)
-    const numeroColunas = 6;
+    const numeroColunas = 7; // Alterado para 7 colunas (Dia de Sorte)
     let textoFormatado = '';
     
     for (let i = 0; i < combinacoes.length; i++) {
@@ -698,11 +667,14 @@ function copiarTabelaParaClipboard(combinacoes) {
         
         // Adicionar tab ou nova linha
         if ((i + 1) % numeroColunas === 0) {
-            textoFormatado += '\n'; // Nova linha após cada 6 números
+            textoFormatado += '\n'; // Nova linha após cada 7 números
         } else {
             textoFormatado += '\t'; // Tab entre colunas
         }
     }
+    
+    // Resto da função permanece igual...
+}
     
     // Método 1: Tenta usar a API Clipboard moderna
     if (navigator.clipboard && window.isSecureContext) {
@@ -775,7 +747,7 @@ function copiarTabelaParaClipboard(combinacoes) {
             message.remove();
         }, 3000);
     }
-}
+
 
 
 
